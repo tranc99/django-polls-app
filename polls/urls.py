@@ -4,8 +4,15 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    url(r'^polls/', include('polls.urls')),
+urlpatterns = patterns('polls.views',
+	url(r'^/$', 'index'),
+    url(r'^(?P<poll_id>\d+)/$', 'detail'),
+    url(r'^(?P<poll_id>\d+)/results/$', 'results'),
+    url(r'^(?P<poll_id>\d+)/vote/$', 'vote'),
+)
+
+urlpatterns += patterns('',
+
     # Examples:
     # url(r'^$', 'awakening.views.home', name='home'),
     # url(r'^awakening/', include('awakening.foo.urls')),
